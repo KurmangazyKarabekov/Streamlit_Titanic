@@ -18,9 +18,7 @@ st.title("🦁 BigData Team: Streamlit Demo")
 st.header("01. Введение в библиотеки ML", divider=True)
 st.subheader("Titanic dataset, train sample", divider=True)
 
-train = pd.read_csv(
-    "train.csv"
-)
+train = pd.read_csv('https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv')
 st.write(train)
 
 
@@ -171,7 +169,7 @@ numerical_features = [
 ]
 
 train.drop("Survived", axis=1, inplace=True)
-encoder = OneHotEncoder(sparse=False, drop="first")
+encoder = OneHotEncoder(sparse_output=False, drop="first")
 train_cat_encoded = encoder.fit_transform(train_processed[categorical_features])
 
 train_cat_encoded_df = pd.DataFrame(
