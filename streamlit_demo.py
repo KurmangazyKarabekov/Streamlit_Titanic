@@ -19,7 +19,7 @@ st.header("01. Введение в библиотеки ML", divider=True)
 st.subheader("Titanic dataset, train sample", divider=True)
 
 train = pd.read_csv(
-    "/Users/kurmangazykarabekov/Desktop/Big Data Team/ML_Models/HW01/train.csv"
+    "train.csv"
 )
 st.write(train)
 
