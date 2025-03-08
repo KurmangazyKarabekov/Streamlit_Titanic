@@ -2,8 +2,9 @@ from sklearn.neighbors import KNeighborsClassifier
 
 from sklearn.model_selection import cross_val_score
 from sklearn.preprocessing import OneHotEncoder, StandardScaler
-
+import re
 import pandas as pd
+import numpy as np
 import streamlit as st
 
 
@@ -172,7 +173,6 @@ numerical_features = [
 train.drop("Survived", axis=1, inplace=True)
 encoder = OneHotEncoder(sparse=False, drop="first")
 train_cat_encoded = encoder.fit_transform(train_processed[categorical_features])
-test_cat_encoded = encoder.transform(test_processed[categorical_features])
 
 train_cat_encoded_df = pd.DataFrame(
     train_cat_encoded,
@@ -220,16 +220,3 @@ with col2:
     st.write({"score_mean": cross_val_score_mean, "score_std": cross_val_scores.std()})
 
     st.session_state["previous_score"] = cross_val_score_mean
-
-st.subheader("Домашнее задание (бонус)", divider=True)
-st.subheader("Домашнее задание (бонус)", divider=True)
-
-st.write(
-    """
-Реализуйте с помощью [st.line_chart](https://docs.streamlit.io/develop/api-reference/charts/st.line_chart)
-и [st.setssion_state](https://docs.streamlit.io/develop/api-reference/caching-and-state/st.session_state)
-сохранение и отображение всей истории изменений cross_val_score. Сохраните ваше решение на GitHub. Бонусом
-попробуйте его бесплатно задеплоить на Streamlit Community Cloud: 
-[документация](https://docs.streamlit.io/deploy/streamlit-community-cloud/get-started).
-"""
-)
